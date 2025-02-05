@@ -1,15 +1,25 @@
 # q1uq1utrain.github.io
+import random
+from math import sin, cos, pi, log
+from tkinter import *
 
-all_points = []
+CANVAS_WIDTH = 980
+CANVAS_HEIGHT = 720
+CANVAS_CENTER_X = CANVAS_WIDTH / 2
+CANVAS_CENTER_Y = CANVAS_HEIGHT / 2
+IMAGE_ENLARGE = 11
 
-heart_halo_point = set()
-for _ in range(halo_number):
-    t = random.uniform(0, 2 * pi)
-    x, y = heart_function(t, shrink_ratio=11.5
-    x, y = shrink(x, y, halo_radius)
-    if (x, y) not in heart_halo_point:
-        heart_halo_point.add((x, y))
-        x += random.randint(-14, 14)
-        y += random.randint(-14, 14)
-        size = random.choice((1, 2, 2))
-        all_points.append((x, y, size))
+HEART_COLOR_LIST = ["#d974ff"]
+
+def heart_function(t, shrink_ratio: float = IMAGE_ENLARGE):
+    """
+    create a heart
+    : param shrink_ratio: ratio
+    :param t: parameter
+    :return: x, y
+    """
+    x = 16 * (sin(t) ** 3)
+    y = -(13 * cos(t) - 5 * cos(2 * t) - 2 * cos(3 * t) - cos(4 * t))
+
+    x *= shrink_ratio
+    y *= shrink_ratio
